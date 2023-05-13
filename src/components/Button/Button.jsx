@@ -1,5 +1,6 @@
 import React from 'react';
 import ButtonLoadMore from './Button.styled';
+import PropTypes from 'prop-types';
 
 const Button = ({ onClick, disabled }) => (
     
@@ -7,5 +8,10 @@ const Button = ({ onClick, disabled }) => (
     Load more
   </ButtonLoadMore>
 );
+
+Button.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  disabled: PropTypes.bool
+};
 
 export default Button;

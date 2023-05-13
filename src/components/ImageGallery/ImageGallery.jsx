@@ -3,6 +3,7 @@ import { ImageGalleryStyled, ImgeGalaryCent } from './ImageGallery.styled';
 import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 import Loader from 'components/Loader/Loader';
 import Button from 'components/Button/Button';
+import PropTypes from 'prop-types';
 
 class ImageGallery extends Component {
   state = {
@@ -85,5 +86,9 @@ class ImageGallery extends Component {
     }
   }
 }
+
+ImageGallery.propTypes = {
+  searchImg: PropTypes.string.isRequired,
+};
 
 export default ImageGallery;

@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { RiSearch2Line } from 'react-icons/ri';
 import { toast } from 'react-toastify';
+import PropTypes from 'prop-types';
 
 import {
   SearchbarForm,
@@ -52,5 +53,9 @@ class Searchbar extends Component {
     );
   }
 }
+
+Searchbar.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
 
 export default Searchbar;

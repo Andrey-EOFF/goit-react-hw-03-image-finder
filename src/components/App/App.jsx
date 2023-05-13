@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import AppStyled from './App.styled';
 import Searchbar from '../Searchbar/Searchbar';
 import ImageGallery from '../ImageGallery/ImageGallery';
+import PropTypes from 'prop-types';
 
 class App extends Component {
   state = {
@@ -24,5 +25,9 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  searchImg: PropTypes.string,
+};
 
 export default App;
