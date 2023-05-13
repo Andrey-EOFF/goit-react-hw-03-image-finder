@@ -1,14 +1,16 @@
 import React from 'react';
-import Loader from 'react-loader-spinner';
+import { Vortex } from  'react-loader-spinner'
 
-const Spinner = () => (
-  <Loader
-    type="TailSpin"
-    color="#00BFFF"
-    height={80}
-    width={80}
-    timeout={3000} // 3 secs
-  />
+const Loader = () => (
+  <Vortex
+  visible={true}
+  height="80"
+  width="80"
+  ariaLabel="vortex-loading"
+  wrapperStyle={{}}
+  wrapperClass="vortex-wrapper"
+  colors={['red', 'green', 'blue', 'yellow', 'orange', 'purple']}
+/>
 );
 
-export default Spinner;
+export default Loader;
