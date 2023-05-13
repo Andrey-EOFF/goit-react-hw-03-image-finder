@@ -1,5 +1,7 @@
 import { Component } from 'react';
 import { RiSearch2Line } from 'react-icons/ri';
+import { toast } from 'react-toastify';
+
 import {
   SearchbarForm,
   SearchForm,
@@ -10,16 +12,22 @@ import {
 
 class Searchbar extends Component {
   state = {
-    value: '',
+    searchImg: '',
   };
 
-  handaleChange = ({ target: { value } }) => {
-    this.setState({ value });
+  handleNameChange = evt => {
+    this.setState({ searchImg: evt.currentTarget.value.toLowerCase() });
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
-    console.log(this.state);
+  handleSubmit = evt => {
+    evt.preventDefault();
+
+    if (this.state.searchImg.trim() === '') {
+      toast('Введите тему изображений!');
+      return;
+    }
+    this.props.onSubmit(this.state.searchImg);
+    this.setState({ searchImg: '' });
   };
 
   render() {
@@ -36,8 +44,8 @@ class Searchbar extends Component {
             autocomplete="off"
             autoFocus
             placeholder="Search images and photos"
-            onChange={this.handaleChange}
-            value={this.state.value}
+            onChange={this.handleNameChange}
+            value={this.state.searchImg}
           />
         </SearchForm>
       </SearchbarForm>
