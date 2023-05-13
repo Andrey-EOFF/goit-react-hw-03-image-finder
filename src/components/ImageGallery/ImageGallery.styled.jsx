@@ -1,5 +1,11 @@
 import styled from 'styled-components';
 
+const ImgeGalaryCent = styled.div`
+      display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+`
 const ImageGalleryStyled = styled.ul`
   display: grid;
   max-width: calc(100vw - 48px);
@@ -13,4 +19,4 @@ const ImageGalleryStyled = styled.ul`
   margin-right: auto;
 `;
 
-export default ImageGalleryStyled;
+export  {ImageGalleryStyled, ImgeGalaryCent};
