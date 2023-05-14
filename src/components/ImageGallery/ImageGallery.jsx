@@ -4,6 +4,7 @@ import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 import Loader from 'components/Loader/Loader';
 import Button from 'components/Button/Button';
 import PropTypes from 'prop-types';
+import fetchImages from 'services/getImages';
 
 class ImageGallery extends Component {
   state = {
@@ -20,16 +21,9 @@ class ImageGallery extends Component {
     if (prevName !== nextName) {
       this.setState({ status: 'pending', images: [], page: 1 });
 
-      setTimeout(() => {
-        fetch(
-          `https://pixabay.com/api/?q=${nextName}&page=1&key=34809960-e72b1bf02b7f952b124a41dc8&image_type=photo&orientation=horizontal&per_page=12`
-        )
-          .then(response => response.json())
-          .then(data =>
-            this.setState({ images: data.hits, status: 'resolved' })
-          )
-          .catch(error => this.setState({ error, status: 'rejected' }));
-      }, 1000);
+      fetchImages(nextName, 1)
+        .then(data => this.setState({ images: data.hits, status: 'resolved' }))
+        .catch(error => this.setState({ error, status: 'rejected' }));
     }
   };
 
@@ -40,10 +34,7 @@ class ImageGallery extends Component {
 
     this.setState({ status: 'resolved' });
 
-    fetch(
-      `https://pixabay.com/api/?q=${searchImg}&page=${nextPage}&key=34809960-e72b1bf02b7f952b124a41dc8&image_type=photo&orientation=horizontal&per_page=12`
-    )
-      .then(response => response.json())
+    fetchImages(searchImg, nextPage)
       .then(data =>
         this.setState(prevState => ({
           images: [...prevState.images, ...data.hits],
